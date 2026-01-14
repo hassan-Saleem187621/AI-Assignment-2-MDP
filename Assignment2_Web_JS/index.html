@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Assignment-2: GridWorld MDP (VI & PI)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">AI</div>
+      <div>
+        <div class="title">GridWorld MDP</div>
+        <div class="subtitle">Value Iteration & Policy Iteration (student-style)</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="left">
+      <div class="card">
+        <h2>Controls</h2>
+
+        <label class="lbl">Algorithm</label>
+        <select id="algo">
+          <option value="VI">Value Iteration</option>
+          <option value="PI">Policy Iteration</option>
+        </select>
+
+        <div class="row">
+          <div class="col">
+            <label class="lbl">Discount (γ)</label>
+            <input id="gamma" type="range" min="0" max="0.99" step="0.01" value="0.95" />
+            <div class="hint"><span id="gammaVal">0.95</span></div>
+          </div>
+          <div class="col">
+            <label class="lbl">Slip prob</label>
+            <input id="slip" type="range" min="0" max="0.5" step="0.05" value="0.2" />
+            <div class="hint"><span id="slipVal">0.20</span></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label class="lbl">Step reward</label>
+            <input id="stepReward" type="number" value="-0.1" step="0.05" />
+            <div class="hint">Default is -0.1</div>
+          </div>
+          <div class="col">
+            <label class="lbl">Max iters</label>
+            <input id="maxIters" type="number" value="200" step="10" />
+            <div class="hint">Run stops at max</div>
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <button id="btnRun" class="btn primary">Run</button>
+          <button id="btnStep" class="btn">Step</button>
+          <button id="btnReset" class="btn danger">Reset</button>
+        </div>
+
+        <div class="card small">
+          <h3>Output</h3>
+          <div class="kv">
+            <div>Iteration</div><div id="itOut">0</div>
+            <div>Delta</div><div id="deltaOut">0.0000</div>
+            <div>Status</div><div id="statusOut">Ready</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Grid Setup (fixed)</h2>
+        <ul class="bullets">
+          <li>Walls: (1,1), (1,2), (2,2)</li>
+          <li>Terminal +10: (0,4) goal</li>
+          <li>Terminal -10: (4,4) bad</li>
+          <li>Move: 80% intended, 20% random among other 3</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="card">
+        <h2>Grid View</h2>
+        <div id="grid" class="grid"></div>
+        <div class="legend">
+          <span class="chip">█ wall</span>
+          <span class="chip">T(+10)</span>
+          <span class="chip">T(-10)</span>
+          <span class="chip">arrows = greedy policy</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Assignment-2
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
